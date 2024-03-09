@@ -10,25 +10,38 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./top-movies.component.scss'],
 })
 export class TopMoviesComponent implements OnInit {
+  constructor() {}
   _movieService = inject(MovieService);
-
-  movies!: Movie[];
+  imageUrl = environment.image_url;
+  movies: Movie[] = [];
   dummyArray = new Array(5);
+  page: number = 1;
   errorMessage!: string;
   isLoading: boolean = true;
-  imageUrl = environment.image_url;
-  constructor() {}
-
-  ngOnInit(): void {
-    this._movieService.getTopMovies().subscribe({
+  ngOnInit() {
+    this.getTopMovies();
+  }
+  getTopMovies(e?: InfiniteScrollCustomEvent) {
+    this._movieService.getTopMovies(this.page).subscribe({
       next: (res) => {
-        this.movies = res.results;
+        console.log(res);
+
+        this.movies.push(...res.results);
         this.isLoading = false;
+        if (e) {
+          e.target.complete();
+          e.target.disabled = res.total_pages === this.page;
+        }
       },
       error: (err) => {
         this.errorMessage = `Error, message from API : "${err.error.status_message}"`;
         this.isLoading = false;
       },
     });
+  }
+
+  loadMore(e: InfiniteScrollCustomEvent) {
+    this.page++;
+    this.getTopMovies(e);
   }
 }

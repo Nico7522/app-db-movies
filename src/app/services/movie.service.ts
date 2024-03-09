@@ -19,10 +19,10 @@ export class MovieService {
       .pipe(delay(3000));
   }
 
-  getTopMovies(): Observable<ApiResult> {
+  getTopMovies(page: number): Observable<ApiResult> {
     return this._httpClient
       .get<ApiResult>(
-        `${environment.base_url}/movie/popular?language=en-US&page=1&api_key=${environment.api_key}`
+        `${environment.base_url}/movie/popular?language=en-US&page=${page}&api_key=${environment.api_key}`
       )
       .pipe(delay(3000));
   }

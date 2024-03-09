@@ -26,6 +26,8 @@ export class MoviesPage implements OnInit {
   getTopRatedMovies(e?: InfiniteScrollCustomEvent) {
     this._movieService.getTopRatedMovies(this.page).subscribe({
       next: (res) => {
+        console.log(res);
+
         this.movies.push(...res.results);
         this.isLoading = false;
         if (e) {
