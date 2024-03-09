@@ -1,0 +1,9 @@
+<ion-list>
+  <ion-menu-toggle  auto-hide="true">
+    @for (nav of navigation; track nav) {
+      <ion-item button [routerLink]="nav.url">
+        <ion-label>{{nav.title}}</ion-label>
+      </ion-item>
+    }
+  </ion-menu-toggle>
+

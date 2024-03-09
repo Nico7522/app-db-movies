@@ -1,3 +1,17 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu swipe-gesture="true" contentId="main-content">
+    <ion-header>
+      <ion-toolbar>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content scrollY="false">
+      <app-nav></app-nav>
+    </ion-content>
+  </ion-menu>     
+  <div class="ion-page" id="main-content" >
+    <ion-buttons class="ion-justify-content-between" slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-router-outlet  id="main-content"></ion-router-outlet>
+  </div>
 </ion-app>
