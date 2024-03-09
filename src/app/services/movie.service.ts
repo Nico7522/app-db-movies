@@ -31,4 +31,12 @@ export class MovieService {
         delay(3000)
       );
   }
+
+  getTopRatedMovies(page: number): Observable<ApiResult> {
+    return this._httpClient
+      .get<ApiResult>(
+        `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=${page}&api_key=${environment.api_key}`
+      )
+      .pipe(delay(3000));
+  }
 }

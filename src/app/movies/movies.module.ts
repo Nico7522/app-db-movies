@@ -8,9 +8,10 @@ import { MoviesPageRoutingModule } from './movies-routing.module';
 
 import { MoviesPage } from './movies.page';
 import { TopMoviesComponent } from './top-movies/top-movies.component';
+import { MovieDetailsComponent } from './movie-details/movie-details.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule, MoviesPageRoutingModule],
-  declarations: [MoviesPage, TopMoviesComponent],
+  declarations: [MoviesPage, TopMoviesComponent, MovieDetailsComponent],
 })
 export class MoviesPageModule {}
