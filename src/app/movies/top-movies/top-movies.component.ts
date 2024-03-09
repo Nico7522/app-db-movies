@@ -11,34 +11,24 @@ import { environment } from 'src/environments/environment';
 })
 export class TopMoviesComponent implements OnInit {
   _movieService = inject(MovieService);
-  imageUrl = environment.image_url;
-  movies: Movie[] = [];
+
+  movies!: Movie[];
   dummyArray = new Array(5);
-  page: number = 1;
   errorMessage!: string;
   isLoading: boolean = true;
-  ngOnInit() {
-    this.getTopRatedMovies();
-  }
-  getTopRatedMovies(e?: InfiniteScrollCustomEvent) {
-    this._movieService.getTopRatedMovies(this.page).subscribe({
+  imageUrl = environment.image_url;
+  constructor() {}
+
+  ngOnInit(): void {
+    this._movieService.getTopMovies().subscribe({
       next: (res) => {
-        this.movies.push(...res.results);
+        this.movies = res.results;
         this.isLoading = false;
-        if (e) {
-          e.target.complete();
-          e.target.disabled = res.total_pages === this.page;
-        }
       },
       error: (err) => {
         this.errorMessage = `Error, message from API : "${err.error.status_message}"`;
         this.isLoading = false;
       },
     });
-  }
-
-  loadMore(e: InfiniteScrollCustomEvent) {
-    this.page++;
-    this.getTopRatedMovies(e);
   }
 }

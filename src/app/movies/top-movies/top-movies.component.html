@@ -1,13 +1,11 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons  slot="end">
-      <ion-back-button defaultHref="true"></ion-back-button>
-    </ion-buttons>
-    <ion-title align="center">Top rated movies</ion-title>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+
 @defer(when !isLoading) {
   <ion-list>
     @for (item of movies; track item.id) {
@@ -37,12 +35,7 @@
           />
       }
     }
-    <ion-infinite-scroll (ionInfinite)="loadMore($event)">
-      <ion-infinite-scroll-content
-        loadingSpinner="bubbles"
-        loadingText="Loading..."
-      />
-    </ion-infinite-scroll>
+
   </ion-list>
 }
 @placeholder {

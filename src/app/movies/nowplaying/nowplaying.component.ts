@@ -1,15 +1,15 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { MovieService } from '../services/movie.service';
-import { Movie } from '../interfaces/movie';
-import { environment } from '../../environments/environment';
 import { InfiniteScrollCustomEvent } from '@ionic/angular';
+import { Movie } from 'src/app/interfaces/movie';
+import { MovieService } from 'src/app/services/movie.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-movies',
-  templateUrl: './movies.page.html',
-  styleUrls: ['./movies.page.scss'],
+  selector: 'app-nowplaying',
+  templateUrl: './nowplaying.component.html',
+  styleUrls: ['./nowplaying.component.scss'],
 })
-export class MoviesPage implements OnInit {
+export class NowplayingComponent implements OnInit {
   constructor() {}
   _movieService = inject(MovieService);
   imageUrl = environment.image_url;
@@ -19,12 +19,10 @@ export class MoviesPage implements OnInit {
   errorMessage!: string;
   isLoading: boolean = true;
   ngOnInit() {
-    console.log('cc');
-
-    this.getTopRatedMovies();
+    this.getActualMovies();
   }
-  getTopRatedMovies(e?: InfiniteScrollCustomEvent) {
-    this._movieService.getTopRatedMovies(this.page).subscribe({
+  getActualMovies(e?: InfiniteScrollCustomEvent) {
+    this._movieService.getActualMovies(this.page).subscribe({
       next: (res) => {
         this.movies.push(...res.results);
         this.isLoading = false;
@@ -42,6 +40,6 @@ export class MoviesPage implements OnInit {
 
   loadMore(e: InfiniteScrollCustomEvent) {
     this.page++;
-    this.getTopRatedMovies(e);
+    this.getActualMovies(e);
   }
 }

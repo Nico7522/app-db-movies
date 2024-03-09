@@ -4,21 +4,20 @@ import { Routes, RouterModule } from '@angular/router';
 import { MoviesPage } from './movies.page';
 import { TopMoviesComponent } from './top-movies/top-movies.component';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
+import { NowplayingComponent } from './nowplaying/nowplaying.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'nowplaying',
-    pathMatch: 'full',
-  },
-
-  {
-    path: 'nowplaying',
     component: MoviesPage,
   },
   {
-    path: 'topmovies',
+    path: 'popular',
     component: TopMoviesComponent,
+  },
+  {
+    path: 'nowplaying',
+    component: NowplayingComponent,
   },
   {
     path: 'details/:movieId',

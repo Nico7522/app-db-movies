@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { MenuController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +7,9 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  constructor(private _navController: NavController) {}
+
+  back() {
+    this._navController.back();
+  }
 }

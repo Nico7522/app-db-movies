@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title align="center">
-      Top 10 popular movies
+      Now playing
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -36,6 +36,13 @@
           />
       }
     }
+    
+    <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading..."
+      />
+    </ion-infinite-scroll>
   </ion-list>
 }
 @placeholder {

@@ -11,16 +11,16 @@ export class NavComponent {
 
   navigation = [
     {
-      url: '/popular',
-      title: 'Top 10 popular movies',
+      url: '/movies',
+      title: 'All movies',
     },
     {
-      url: 'movies/nowplaying',
+      url: '/movies/popular',
+      title: 'Most popular movies',
+    },
+    {
+      url: '/movies/nowplaying',
       title: 'Now playing',
-    },
-    {
-      url: 'movies/topmovies',
-      title: 'Top rated movies',
     },
   ];
 }

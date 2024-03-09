@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import {
+  PreloadAllModules,
+  RouterModule,
+  Routes,
+  withComponentInputBinding,
+} from '@angular/router';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'popular',
+    redirectTo: 'movies',
     pathMatch: 'full',
-  },
-  {
-    path: 'popular',
-    loadChildren: () =>
-      import('./home/home.module').then((m) => m.HomePageModule),
   },
   {
     path: 'movies',
@@ -21,7 +21,10 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: PreloadAllModules,
+      bindToComponentInputs: true,
+    }),
   ],
   exports: [RouterModule],
 })
